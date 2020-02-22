@@ -1,4 +1,65 @@
 ---
+- name: Test Playbook
+  hosts: all
+  become: true
+  become_method: sudo
+  connection: ssh
+  ignore_errors: false
+  tasks:
+    - name: Task Name Here
+      ping:
+    - name: Install telnet
+      package: 
+        name: 
+          - telnet
+          - elinks
+          - wget 
+          - unzip
+        state: present
+
+---
+- name: Test Playbook
+  hosts: all
+  become: true
+  become_method: sudo
+  connection: ssh
+  ignore_errors: false
+  tasks:
+    - name: Task Name Here
+      ping:
+---
+ - name: Add the user 'bob' with a specific uid and a primary group of 'admin'
+  user:
+    name: bob
+    comment: bob
+    uid: 1040
+    group: admin
+
+ - name: Add the user 'lisa' with a specific uid and a primary group of 'admin'
+   user:
+     name: lisa
+     comment: lisa
+     uid: 1041
+     group: admin
+
+
+- name: Add the user 'bob' with a specific uid and a primary group of 'admin'
+  user:
+    name: ben
+    comment: ben
+    uid: 1042
+    group: admin
+
+
+- name: Add the user 'katty' with a specific uid and a primary group of 'admin'
+  user:
+    name: katty
+    comment: katty
+    uid: 1043
+    group: admin
+
+
+---
 - name: Installs wordpress
   hosts: localhost
   become: yes

@@ -15,8 +15,7 @@
           - elinks
           - wget 
           - unzip
-        state: present
-
+        state: present       
 ---
 - name: Test Playbook
   hosts: all

@@ -1,10 +1,12 @@
 ---
-- name: create a VPC with dedicated tenancy and a couple of tags
-  ec2_vpc_net:
-    name: Module_dev2
-    cidr_block: 10.10.0.0/16
-    region: us-west-2
-    tags:
-      module: ec2_vpc_net
-      this: works
-    tenancy: dedicated
+- name: Playbook for VPC
+  hosts: localhost
+  tasks:
+    - name: VPC for class
+      ec2_vpc_net:
+        name: "{{vpc_name}}"
+        cidr_block: "{{vpc_cidr}}"
+        region: "{{region}}"
+        tags:
+          Class: Ansible
+          Task: VPC

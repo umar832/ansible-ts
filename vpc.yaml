@@ -10,7 +10,7 @@
         tags:
           Class: Ansible
           Task: VPC
-          
+
 - name: Playbook for Subnets
   hosts: localhost
   gather_facts: no
@@ -55,19 +55,7 @@
         resource_tags:
           Name: Database Subnet3
       register: database_subnet3
----
-- name: Playbook for Subnets
-  hosts: localhost
-  gather_facts: no
-  vars_files:
-    - configurations/regions
-  tasks:
-    - name: Collect VPC info
-      ec2_vpc_net_facts:
-        region: "{{region}}"
-        filters:
-          "tag:Task": VPC
-      register: VPC1
+
 
     - name: Create Public Subnet 1
       ec2_vpc_subnet:

@@ -25,7 +25,7 @@
 
 
     - name: Get Key 
-      shell: r1soft-setup --get-key http://backup.umar.mobi
+      shell: r1soft-setup --get-key http://http://backup.umar.mobi
 
 
 

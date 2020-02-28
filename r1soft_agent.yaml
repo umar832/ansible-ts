@@ -1,37 +1,35 @@
 ---
-- name: R1soft Playbook
+- name: R1soft playbook
   hosts: all
   become: true
   become_method: sudo
   connection: ssh
   ignore_errors: false
   tasks:
-    - name: Creates  a repo
-      copy: 
+    - name: Creates a repo
+      copy:
         src: r1soft.repo
         dest: /etc/yum.repos.d/r1soft.repo
 
     - name: Install R1soft
       package:
-        name: serverbackup-enterprise-agent 
+        name: serverbackup-enterprise-agent
         state: latest
-
+      notify: R1soft RESTART
 
     - name: Power off iptables
-      systemd: 
+      systemd:
         name: firewalld
         state: stopped
       ignore_errors: true
 
+    - name: Get Key
+      shell: r1soft-setup --get-key http://backup.umar.mobi   
 
-    - name: Get Key 
-      shell: r1soft-setup --get-key http://http://backup.umar.mobi
-
-
-
-    - name: Start R1soft Agent 
-      systemd: 
+  handlers:
+    - name: R1soft RESTART
+      systemd:
         name: sbm-agent
         state: restarted
         enabled: yes
-  
+© 2020 GitHub, Inc.

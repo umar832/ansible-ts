@@ -6,5 +6,5 @@
   connection: ssh
   ignore_errors: false
   roles:
-    - {roles: company-prerequisites}
+    - {role: company-prerequisites}
     

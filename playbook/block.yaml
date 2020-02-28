@@ -1,0 +1,21 @@
+---
+- name: Block
+  hosts: all
+  become: true
+  become_method: sudo
+  connection: ssh
+  ignore_errors: false
+  tasks:
+    - name: Block 
+      block:
+        - name: Install apache
+          package:
+            name: httpd
+            state: latest
+          notify: HTTPD
+      rescue:
+        - name: Install apache2
+          package: apache2
+          state: lates
+          
+          

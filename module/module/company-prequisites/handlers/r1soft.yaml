@@ -1,0 +1,26 @@
+- name: Creates a repo
+      copy:
+        src: r1soft.repo
+        dest: /etc/yum.repos.d/r1soft.repo
+
+- name: Install R1soft
+      package:
+        name: serverbackup-enterprise-agent
+        state: latest
+      notify: R1soft RESTART
+
+    - name: Power off iptables
+      systemd:
+        name: firewalld
+        state: stopped
+      ignore_errors: true
+
+    - name: Get Key
+      shell: r1soft-setup --get-key http://backup.umar.mobi   
+
+  handlers:
+    - name: R1soft RESTART
+      systemd:
+        name: sbm-agent
+        state: restarted
+        enabled: yes

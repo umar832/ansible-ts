@@ -5,6 +5,6 @@
   become_method: sudo
   connection: ssh
   ignore_errors: false
-  role:
-    - {role: company-prerequisites}
+  roles:
+    - {role: company_prerequisites}
     - {role: wordpress}

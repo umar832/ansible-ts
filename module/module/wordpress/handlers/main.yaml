@@ -1,0 +1,12 @@
+- name: MARIADB RESTART
+  systemd:
+    name: mariadb
+    state: restarted
+
+  
+- name: Restart httpd
+  systemd:
+    name: httpd
+    tate: restarted  
+    nabled: yes
+    

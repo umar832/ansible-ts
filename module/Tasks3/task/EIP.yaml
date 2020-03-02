@@ -7,7 +7,7 @@
   tasks:
     - name: To Launch EC2 Instance and Allocate EIP then Assigned to Instance
       ec2:
-        region: "{{ region }}"
+        region: us-west-2
         key_name: ansible
         instance_type: t2.medium
         image: ami-01ed306a12b7d1c96
@@ -18,7 +18,7 @@
         in_vpc: yes
         reuse_existing_ip_allowed: yes
         state: present
-        region: "{{ region }}"
-        instance_id: "{{ ec2.instance_id[0] }}"
+        region: us-west-2
+        instance_id: i-067abf6ef1aad1595
       register: instance_eip
     - debug: var=instance_eip.public_ip

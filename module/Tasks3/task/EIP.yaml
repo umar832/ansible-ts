@@ -1,6 +1,32 @@
-- name: Allocate Elastic IP and associate it with an instance
-  ec2_eip:
-    device_id: "{{ item }}"
-    region: "{{ aws_region }}"
-  with_items:
-   - "{{ ec2_public_instance }}"
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    region: us-east-1
+  tasks:
+    - name: To Launch EC2 Instance and Allocate EIP then Assigned to Instance
+      ec2:
+        region: "{{ region }}"
+        key_name: ansible
+        instance_type: t2.micro
+        image: ami-01ed306a12b7d1c96
+        wait: yes
+        group: webserver
+      register: ec2
+    - name: Associate new EIP for the Instance
+      ec2_eip:
+        in_vpc: yes
+        reuse_existing_ip_allowed: yes
+        state: present
+        region: "{{ region }}"
+        instance_id: "{{ ec2.instance_id[0] }}"
+      register: instance_eip
+    - debug: var=instance_eip.public_ip
+
+    - name: Wait for SSH to Start
+      wait_for:
+        host: "{{ ec2.private_ip }}"
+        port: 22
+        timeout: 300
+      delegate_to: "127.0.0.1"

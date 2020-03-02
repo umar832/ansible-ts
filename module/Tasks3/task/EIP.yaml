@@ -20,13 +20,7 @@
         reuse_existing_ip_allowed: yes
         state: present
         region: "{{ region }}"
-        instance_id: "{{ ec2.instance_id[0] }}"
+        instance_id: "{{ ec2.instance_id }}"
       register: instance_eip
     - debug: var=instance_eip.public_ip
 
-    - name: Wait for SSH to Start
-      wait_for:
-        host: "{{ ec2.private_ip }}"
-        port: 22
-        timeout: 300
-      delegate_to: "127.0.0.1"

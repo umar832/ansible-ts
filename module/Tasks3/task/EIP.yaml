@@ -12,7 +12,6 @@
         instance_type: t2.micro
         image: ami-01ed306a12b7d1c96
         wait: yes
-        group: webserver
       register: ec2
     - name: Associate new EIP for the Instance
       ec2_eip:

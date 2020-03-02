@@ -23,3 +23,11 @@
       register: instance_eip
     - debug: var=instance_eip.public_ip
 
+- name: Wait for SSH to Start
+      wait_for:
+        host: "{{ ec2.private_ip }}"
+        port: 22
+        timeout: 300
+      delegate_to: "127.0.0.1"
+
+

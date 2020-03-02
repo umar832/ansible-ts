@@ -1,0 +1,6 @@
+- name: Allocate Elastic IP and associate it with an instance
+  ec2_eip:
+    device_id: "{{ item }}"
+    region: "{{ aws_region }}"
+  with_items:
+   - "{{ ec2_public_instance }}"

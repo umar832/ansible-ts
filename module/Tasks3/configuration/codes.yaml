@@ -1,0 +1,21 @@
+ELB_TAG_CLIENT: dev
+HTTP_CIDR: 0.0.0.0/0
+Private_cidr1: 10.0.1.0/24
+Private_cidr2: 10.0.2.0/24
+Private_cidr3: 10.0.3.0/24
+Public_cidr1: 10.0.101.0/24
+Public_cidr2: 10.0.102.0/24
+Public_cidr3: 10.0.103.0/24
+SSH_CIDR: 0.0.0.0/0
+SecGroupDescription: Sec Group 1 for VPC
+SecGroupName: SecGroupForVPC
+ami: ami-07d0d231fae2220c7
+desired_capacity: 5
+instance_type: t2.micro
+key_name: ansible
+lc_name: my_new_lc
+max_size: 48
+min_size: 5
+region: us-west-2
+vpc_cidr: 10.0.0.0/16
+vpc_name: ansible

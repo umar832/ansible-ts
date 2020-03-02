@@ -13,13 +13,12 @@
         image: ami-01ed306a12b7d1c96
         wait: yes
       register: ec2
-
-- name: Associate new EIP for the Instance
-  ec2_eip:
-    in_vpc: yes
-    reuse_existing_ip_allowed: yes
-    state: present
-    region: "{{ region }}"
-    instance_id: "{{ ec2.instance_id }}"
-  register: instance_eip
-- debug: var=instance_eip.public_ip
+    - name: Associate new EIP for the Instance
+      ec2_eip:
+        in_vpc: yes
+        reuse_existing_ip_allowed: yes
+        state: present
+        region: "{{ region }}"
+        instance_id: "{{ ec2.instance_id[0] }}"
+      register: instance_eip
+    - debug: var=instance_eip.public_ip

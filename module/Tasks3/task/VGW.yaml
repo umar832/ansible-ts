@@ -1,4 +1,3 @@
----
 - name: Create a new vgw attached to a specific VPC
   ec2_vpc_vgw:
     state: present

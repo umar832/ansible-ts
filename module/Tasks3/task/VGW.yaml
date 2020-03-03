@@ -1,8 +1,10 @@
 ---
-- name: Create a new unattached vgw
+- name: Create a new vgw attached to a specific VPC
   ec2_vpc_vgw:
     state: present
-    region: us-west-2
+    region: ap-southeast-2
+    profile: personal
+    vpc_id: vpc-12345678
     name: personal-testing
     type: ipsec.1
   register: created_vgw

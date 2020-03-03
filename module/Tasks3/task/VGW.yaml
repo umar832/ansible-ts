@@ -1,9 +1,8 @@
-- name: Create a new vgw attached to a specific VPC
-  ec2_vpc_vgw:
+- name: Create new nat gateway, using an EIP address  and wait for available status.
+  ec2_vpc_nat_gateway:
     state: present
-    region: ap-southeast-2
-    profile: personal
-    vpc_id: vpc-12345678
-    name: personal-testing
-    type: ipsec.1
-  register: created_vgw
+    subnet_id: subnet-00e2166690e7a072b
+    eip_address: 54.188.111.208
+    wait: yes
+    region: us-west-2
+  register: new_nat_gateway

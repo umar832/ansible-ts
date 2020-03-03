@@ -5,7 +5,7 @@
   tasks:
     - name: Collect VPC info
       ec2_vpc_net_facts:
-        region: "{{region}}"
+        region: us-west-2
         filters:
           "tag:Task": VPC
       register: VPC1
@@ -13,15 +13,15 @@
 
     - name: Set up public subnet route table
       ec2_vpc_route_table:
-        vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
-        region: "{{region}}"
+        vpc_id: vpc-0bcfa0c38ee62c348
+        region: us-west-2
         tags:
           Name: Public
         subnets:
-          - "{{Web_subnet1.subnet.id}}"
-          - "{{Web_subnet2.subnet.id}}"
-          - "{{Web_subnet3.subnet.id}}"
+          - subnet-0425f2d07007afd15
+          - subnet-09ea0f6b7a7807c07
+          - subnet-00e2166690e7a072b
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{igw.gateway_id}}"
+            gateway_id: igw-0df87dd7421e87d55
       register: public_route_table

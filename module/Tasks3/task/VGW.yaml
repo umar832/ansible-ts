@@ -1,3 +1,4 @@
+---
 - name: Create new nat gateway, using an EIP address  and wait for available status.
   ec2_vpc_nat_gateway:
     state: present

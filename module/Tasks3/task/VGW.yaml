@@ -3,7 +3,6 @@
   ec2_vpc_vgw:
     state: present
     region: us-west-2
-    profile: Muhammadumar Ibaidullaev 
     name: personal-testing
     type: ipsec.1
   register: created_vgw

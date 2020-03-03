@@ -5,14 +5,14 @@
   tasks:
     - name: Collect VPC info
       ec2_vpc_net_facts:
-        region: "{{region}}"
+        region: us-west-2
         filters:
           "tag:Task": VPC
       register: VPC1
 
     - name: create ng 
       ec2_vpc_nat_gateway:
-        region: "{{region}}"
-        vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
+        region: us-west-2
+        vpc_id: vpc-0bcfa0c38ee62c348
         state: present
       register: ng

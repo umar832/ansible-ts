@@ -5,15 +5,15 @@
   tasks:
     - name: Collect VPC info
       ec2_vpc_net_facts:
-        region: "{{region}}"
+        region: us-west-2
         filters:
           "tag:Task": VPC
       register: VPC1
 
     - name: Set up private subnet route table
       ec2_vpc_route_table:
-        vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
-        region: "{{region}}"
+        vpc_id: vpc-0bcfa0c38ee62c348
+        region: us-west-2
         tags:
           Name: private
         subnets:
@@ -21,5 +21,5 @@
           - "{{database_subnet2.subnet.id}}"
           - "{{database_subnet3.subnet.id}}"
         routes:
-          - dest: "{{vpc_cidr}}"
+          - dest: 10.0.0.0/16
       register: private_route_table

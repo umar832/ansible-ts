@@ -17,9 +17,9 @@
         tags:
           Name: private
         subnets:
-          - "{{database_subnet1.subnet.id}}"
-          - "{{database_subnet2.subnet.id}}"
-          - "{{database_subnet3.subnet.id}}"
+          - subnet-065d2d3aed8218bf5
+          - subnet-093353667e96a37d5
+          - subnet-0cfa5bc905070b262
         routes:
           - dest: 10.0.0.0/16
       register: private_route_table
